@@ -1,0 +1,119 @@
+from __future__ import annotations
+from abc import ABC, abstractmethod
+
+class AbstractBakery(ABC):
+    @abstractmethod
+    def create_star(self) -> AbstractStar:
+        pass
+
+    @abstractmethod
+    def create_circle(self) -> AbstractCircle:
+        pass
+
+    @abstractmethod
+    def create_square(self) -> AbstractSquare:
+        pass
+
+class ConcreteSchoki(AbstractBakery):
+    def create_star(self) -> AbstractStar:
+        return ConcreteSchokiStar()
+    
+    def create_circle(self) -> AbstractCircle:
+        return ConcreteSchokiCircle()
+    
+    def create_square(self) -> AbstractSquare:
+        return ConcreteSchokiSquare()
+
+class ConcreteCookie(AbstractBakery):
+    def create_star(self) -> AbstractStar:
+        return ConcreteCookieStar()
+    
+    def create_circle(self) -> AbstractCircle:
+        return ConcreteCookieCircle()
+    
+    def create_square(self) -> AbstractSquare:
+        return ConcreteCookieSquare()
+
+class ConcreteMarzipan(AbstractBakery):
+    def create_star(self) -> AbstractStar:
+        return ConcreteMarzipanStar()
+    
+    def create_circle(self) -> AbstractCircle:
+        return ConcreteMarzipanCircle()
+    
+    def create_square(self) -> AbstractSquare:
+        return ConcreteMarzipanSquare()
+
+
+class AbstractShape(ABC):
+    @abstractmethod
+    def eat(self) -> str:
+        pass
+
+class AbstractStar(AbstractShape):
+    def eat(self) -> str:
+        pass
+
+class AbstractCircle(AbstractShape):
+    def eat(self) -> str:
+        pass
+
+class AbstractSquare(AbstractShape):
+    def eat(self) -> str:
+        pass
+
+
+class ConcreteSchokiStar():
+    def eat(self) -> str:
+        return "Du isst den leckeren Schokoladenstern."
+
+class ConcreteSchokiCircle():
+    def eat(self) -> str:
+        return "Du isst den vorzüglichen Schokoladenkreis."
+
+class ConcreteSchokiSquare():
+    def eat(self) -> str:
+        return "Du isst das exquisite Schokoladenquadrat."
+
+class ConcreteCookieStar():
+    def eat(self) -> str:
+        return "Du isst den schmackhaften Keksstern."
+
+class ConcreteCookieCircle():
+    def eat(self) -> str:
+        return "Du isst den wohlschmeckenden runden Keks."
+
+class ConcreteCookieSquare():
+    def eat(self) -> str:
+        return ("Du isst den gustioesen quadratischen Keks.")
+
+class ConcreteMarzipanStar():
+    def eat(self) -> str:
+        return ("Du isst den koestlichen Marzipanstern.")
+
+class ConcreteMarzipanCircle():
+    def eat(self) -> str:
+        return "Du isst die delikate Marzipankartoffel."
+
+class ConcreteMarzipanSquare():
+    def eat(self) -> str:
+        return "Du isst das erlesene Marzipanquadrat."
+
+
+def client_bakery(bakery: AbstractBakery) -> None:
+    sweets_a = bakery.create_circle()
+    sweets_b = bakery.create_square()
+    sweets_c = bakery.create_star()
+
+    print(f"{sweets_a.eat()}")
+    print(f"{sweets_b.eat()}")
+    print(f"{sweets_c.eat()}", end="")
+
+
+print("Kunde: Test mit der Schokoladenfabrik:")
+client_bakery(ConcreteCookie())
+
+print("\n")
+
+print("Kunde: Test mit der Marzipanfabrik:")
+client_bakery(ConcreteMarzipan())
