@@ -1,0 +1,48 @@
+from __future__ import annotations
+from abc import ABC, abstractmethod
+
+class AbstractFactory(ABC):
+    @abstractmethod
+    def create_closebutton(self) -> AbstractCloseButton:
+        pass
+    @abstractmethod
+    def create_minbutton(self) -> AbstractMinButton:
+        pass
+
+class ConcreteWindows(AbstractFactory):
+    def create_closebutton(self) -> AbstractCloseButton:
+        return WindowsCloseButton()
+     def create_minbutton(self) -> AbstracMinButton:
+        return WindowsMinButton()
+
+class ConcreteMacOS(AbstractFactory):
+    def create_closebutton(self) -> AbstractCloseButton:
+        return MacOSCloseButton()
+    def create_minbutton(self) -> AbstractMinButton:
+        return MacOSMinButton()
+
+
+
+class AbstractUI(ABC):
+    pass
+
+class AbstractCloseButton(AbstractUI):
+    pass
+
+class AbstracMinButton(AbstractUI):
+    pass
+
+
+class WindowsCloseButton():
+    pass
+
+class WindowsMinButton():
+    pass
+
+class MacOSCloseButton():
+    pass
+
+class MacOSMinButton():
+    pass
+
+
